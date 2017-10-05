@@ -1,0 +1,129 @@
+<div class="viewMovimentoFinanceiro" ng-controller="movimentoFinanceiroController">
+	
+	<div class="buscaAluno">
+		<div class="col-md-1">Aluno:</div>
+		<div class="col-md-2 col-sm-2"><input class="form-control" type="text" ng-model="Aluno.id"></div>
+		<div class="col-md-8"><input class="form-control" type="text" ng-model="Aluno.nome"></div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+			<span class="glyphicon glyphicon-search"></span>	
+		</div>
+	</div>
+	<br><br>
+
+	<fieldset>
+		<legend>Movimento Financeiro</legend>	
+
+		<div class="contentTabela contentTabelaParcelas">   
+        	<table class="table table-bordered  tabelaMovimentoFinanceiro">
+				<tr>
+					<th class="active">Parcela</th>
+					<th class="active">Aluno</th>
+					<th class="active">Juros/Multa</th>
+					<th class="active">Desconto</th>
+					<th class="active">Valor Total</th>
+					<th class="active">Vencimento</th>
+					<th class="active">Pagamento</th>
+				</tr>
+				<tr ng-repeat="parcela in arrayParcelas | filter: filtroMovimento" 
+				ng-click="setLinhaTabelaSel(arrayParcelas.indexOf(parcela))" 
+				ng-class="{'linhaTabelaSel' : isLinhaTabelaSel(arrayParcelas.indexOf(parcela))}">
+					<td>{{parcela.parc_cod}}</td>
+					<td>{{parcela.alu_nome}}</td>
+					<td>{{parcela.parc_valorjurosmulta | real}}</td>
+					<td>{{parcela.parc_valordesconto | real}}</td>
+					<td>{{parcela.parc_valorliquido | real}}</td>
+					<td>{{parcela.parc_vencimento | date: 'dd/MM/yyyy'}}</td>
+					<td>{{parcela.parc_pagamento | date: 'dd/MM/yyyy'}}</td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length == 0">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 1">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 2">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 3">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 4">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 5">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 6">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 7">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+        </div>
+        <br>
+        <div class="row">
+        	<div class="col-md-3 col-sm-3 col-xs-3" align="right">Data Movimento:</div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+            	<input type="date" ng-model="dataMovimento" class="form-control" ng-blur="atualizaFiltro()"></input>
+            </div>
+        </div>
+	</fieldset>
+	<hr>
+
+	<div class="col-md-9 col-sm-9 col-xs-0"></div>
+    <div class="botoesPrincipais">
+    	<button type="button" class="btn btn-success" ng-click="salvaAluno()">Salvar</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+    </div>
+
+</div>

@@ -1,0 +1,469 @@
+
+<div class="viewAluno" ng-controller="alunoController">
+    <div class="abas">
+        <ul>
+            <li><a ng-click="setAbaAtual('Dados')" ng-class="{'abaAtiva' : isAbaAtual('Dados')}">
+            Dados Pessoais
+            </a></li>
+            <li><a ng-click="setAbaAtual('Avaliacao')" ng-class="{'abaAtiva' : isAbaAtual('Avaliacao')}">
+            Avaliação Física
+            </a></li>
+            <li><a ng-click="setAbaAtual('Plano')" ng-class="{'abaAtiva' : isAbaAtual('Plano')}">
+            Plano
+            </a></li>
+        </ul>
+    </div>
+
+    <div class="tabs-container">
+		<div class="tab-content" ng-show="isAbaAtual('Dados')">	    
+		        <fieldset>
+		            <legend>Dados Pessoais</legend>
+		            	<div class="row">
+			            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Matrícula:</div>
+			                <div class="col-md-2 col-sm-4 col-xs-3"><input class="form-control" type="text" 
+			                ng-model="Aluno.id" required></div>
+			                <div class="col-md-1 col-sm-6 col-xs-2">
+								<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+								<span class="glyphicon glyphicon-search"></span>	
+							</div>
+			                <div class="col-md-2 col-sm-3 col-xs-2 " align="right">Status:</div>
+			                <div class="col-md-5 col-sm-7 col-xs-4">
+			                	Ativo <input ng-model="Aluno.status" id="StatusAtivo" value="true" type="radio">
+			                	Inativo <input ng-model="Aluno.status" id="StatusInativo" value="false" type="radio">
+			                </div> 
+		                </div>
+		                
+		                <div class="row">
+			                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Nome:</div>
+			                <div class="col-md-10 col-sm-10 col-xs-10"><input type="text" ng-model="Aluno.nome"
+			                class="form-control"></div>
+		                </div>
+
+		                <div class="row">
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Nascimento:</div>
+			                <div class="col-md-3 col-sm-3 col-xs-4">
+			                	<input type="date" ng-model="Aluno.nascimento" class="form-control"></input>
+			                </div>
+			                <div class="col-md-1 col-sm-2 col-xs-2" align="right">CPF:</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input type="text" ng-model="Aluno.cpf" class="form-control" maxlength="11">
+			                </div>
+		                	<div class="col-md-1 col-sm-1 col-xs-2 " align="right">Sexo:</div>
+			                <div class="col-md-3 col-sm-3 col-xs-3 ">
+				                <select class="form-control" ng-model="Aluno.sexo">
+									<option value="M">
+										Masculino
+									</option>
+									<option value="F">
+										Feminino
+									</option>
+								</select>
+							</div>
+		                </div>
+
+		                <div class="row">
+		                	<div class="col-md-2 col-sm-2 col-xs-2" align="right">RG:</div>
+		                	<div class="col-md-3 col-sm-2 col-xs-4">
+		                		<input type="text" ng-model="Aluno.rg" class="form-control" maxlength="9">
+		                	</div>
+		                    <div class="col-md-1 col-sm-2 col-xs-2" align="right">Estado:</div>
+		                	<div class="col-md-2 col-sm-3 col-xs-4">
+								<select class="form-control" ng-click="carregaCidades('')" 
+								ng-model="Endereco.estado" 
+								ng-options="estado.esta_cod as estado.esta_uf for estado in arrEstados">
+								</select>
+		                	</div>
+			                <div class="col-md-1 col-sm-2 col-xs-2" align="right">Cidade:</div>
+			                <div class="col-md-3 col-sm-3 col-xs-4">
+			                <select class="form-control" ng-model="Endereco.cidade" 
+			                ng-options="cidade.muni_cod as cidade.muni_descricao for cidade in arrCidades">
+							</select>
+			                </div>
+		                </div>
+
+		                <div class="row">
+		                	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Endereço:</div>
+			                <div class="col-md-5 col-sm-3 col-xs-3">
+			                	<input type="text" ng-model="Endereco.endereco" class="form-control"></input>
+			                </div>
+		                	<div class="col-md-1 col-sm-1 col-xs-2" align="right">CEP:</div>
+			                <div class="col-md-4 col-sm-4 col-xs-4">
+			                	<input class="form-control" type="text" ng-model="Endereco.cep" maxlength="8">
+			                </div>
+		                </div>
+
+		                <div class="row">
+		                	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Complemento:</div>
+			                <div class="col-md-5 col-sm-3 col-xs-9">
+			                	<input type="text" ng-model="Endereco.complemento" class="form-control"></input>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Bairro:</div>
+			                <div class="col-md-3 col-sm-4 col-xs-4">
+			                	<input type="text" ng-model="Endereco.bairro" class="form-control"></input>
+			                </div>
+		                </div>
+
+		                <div class="contentTabela contentTabelaContatos">   
+			            	<table class="table table-bordered  tabelaContatos">
+								<tr>
+									<th class="active">Descrição</th>
+									<th class="active">Número</th>
+									<th class="active">E-mail</th>
+								</tr>
+								<tr ng-repeat="contato in arrayContatos" ng-click="setLinhaTabelaContatoSel(contato.id)" 
+								ng-class="{'linhaTabelaSel' : isLinhaTabelaContatoSel(contato.id)}">
+									<td>{{contato.descricao}}</td>
+									<td>{{contato.numero}}</td>
+									<td>{{contato.email}}</td>
+								</tr>
+								<tr class="linhaInicial" ng-if="arrayContatos.length == 0">
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr class="linhaInicial" ng-if="arrayContatos.length <= 1">
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr class="linhaInicial" ng-if="arrayContatos.length <= 2">
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+		                </div>
+
+		                <br>
+
+		                <div class="row ">
+		                	<div class="col-md-2 col-sm-2" align="right">Descrição:</div>
+			                <div class="col-md-3 col-sm-3"><input type="text" ng-model="Contato.descricaoContato" class="form-control" maxlength="50">
+			                </input></div>
+		                	<div class="col-md-1 col-sm-1" align="right">Número:</div>
+			                <div class="col-md-2 col-sm-3"><input type="tel" maxlength="15" ng-model="Contato.numeroContato" class="form-control">        	
+			                </input></div>
+		                	<div class="col-md-1 col-sm-1" align="right">Email:</div>
+			                <div class="col-md-3 col-sm-2"><input type="text" maxlength="100" ng-model="Contato.emailContato" class="form-control">
+			                </input></div>
+		                </div>
+
+		                <div class="col-md-10 col-sm-10 col-xs-10"></div>
+		                <div class="btn-group" align="right">
+							<button type="button" class="btn btn-default" id="addContato" 
+							ng-click="addContato()">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+							<button type="button" class="btn btn-default" id="editaContato" 
+							ng-click="editaContato()">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+							<button type="button" class="btn btn-default" id="excluiContato" 
+							ng-click="excluiContato()">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</div>
+		        </fieldset>
+		</div>
+	
+
+		<!--  Aba Avaliacao Fisica-->
+		<div class="tab-content" ng-show="isAbaAtual('Avaliacao')">
+			<fieldset>
+		            <legend>Avaliação Física</legend>
+
+		            <ul class="abas">
+					  <li>
+						  <a ng-click="setAbaAtualAvaliacao('avaCadastro')" 
+						  ng-class="{'abaAtiva' : isAbaAtualAvaliacao('avaCadastro')}">
+						  	Cadastrar Avaliação
+						  </a>
+					  </li>
+					  <li>
+						  <a ng-click="setAbaAtualAvaliacao('avaCadastradas')" 
+						  ng-class="{'abaAtiva' : isAbaAtualAvaliacao('avaCadastradas')}">
+						  	Avaliações Cadastradas
+						  </a>
+					  </li>
+					</ul>
+
+					<div class="tabs-container">
+						<div class="tab-content" ng-show="isAbaAtualAvaliacao('avaCadastro')">
+							
+							<div class="row">
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Diâmetro Joelho(M):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" maxlength="5" ng-model="avaAluno.diametroJoelho" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso(kg):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				               		<input class="form-control" type="text" maxlength="5" ng-model="avaAluno.peso" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Altura(M):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				               		<input class="form-control" type="text" maxlength="5" ng-model="avaAluno.altura" placeholder="0,00">
+				                </div>
+				            </div>
+				           	
+							<div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Diâmetro Punho(M):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" maxlength="5" ng-model="avaAluno.diametroPunho" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Braço Contraido(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.bracoContraido" type="number" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Braço Relaxado(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.bracoRelaxado" type="number" placeholder="0,00">
+				                </div>
+				            </div>
+
+				            <div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Antebraço(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="number" ng-model="avaAluno.antebraco" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Ombro(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ombro" type="number" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Coxa(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.coxa" type="number" placeholder="0,00">
+				                </div>
+				            </div>
+
+				            <div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Tórax(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="number" ng-model="avaAluno.torax" placeholder="0,00">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Cintura(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.cintura" placeholder="0,00" type="number">
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Panturrilha(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.panturrilha" type="number" placeholder="0,00">
+				                </div>
+				            </div>
+
+				            <div class="row"> 
+				    			<div class="col-md-2 col-sm-2 col-xs-2" align="right">Data:</div>
+								<div class="col-md-3 col-sm-3 col-xs-5">
+									<input type="date" ng-model="avaAluno.dtAvaliacao" class="form-control"></input>
+								</div>   
+								<div class="col-md-4 col-sm-4 col-xs-4" align="center">
+				                	<button class="btn btn-primary" ng-click="geraAvaliacao()">Realizar Avaliação</button>
+				                </div>		
+				           	</div>
+
+				            <hr>
+				            <div class="row">
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso Gordo:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" ng-model="avaAluno.pesoGordo" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso Magro:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				               	 <input class="form-control" type="text" ng-model="avaAluno.pesoMagro" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso Ósseo:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-">
+				                	<input class="form-control" type="text" ng-model="avaAluno.pesoOsseo" placeholder="0,00" disabled>
+				                </div>
+				            </div>
+				            <div class="row">
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Gordura Corporal:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.gorduraCorporal" type="text" placeholder="0,00" 
+				                disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso Muscular:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" ng-model="avaAluno.pesoMuscular" placeholder="0,00" disabled>
+				                </div>
+				            </div>
+						</div>
+
+						<div class="tab-content" ng-show="isAbaAtualAvaliacao('avaCadastradas')">
+				            <div align="center">Avaliações Cadastradas</div>
+				            <div class="contentTabela contentTabelaAvaliacoes">   
+				            	<table class="table table-bordered">
+									<tr>
+										<th class="active">AV</th>
+										<th class="active">Peso</th>
+										<th class="active">Gordura Corporal</th>
+										<th class="active">Peso Gordo</th>
+										<th class="active">Peso Magro</th>
+										<th class="active">Peso Muscular</th>
+									</tr>
+									<tr ng-repeat="avaliacao in arrayAvaliacoes" 
+									ng-click="setLinhaTabelaAvaliacaoSel(avaliacao.ava_cod)" 
+									ng-class="{'linhaTabelaSel' : isLinhaTabelaAvaliacaoSel(avaliacao.ava_cod)}">
+										<td>{{avaliacao.ava_cod}}</td>
+										<td>{{avaliacao.ava_peso}}</td>
+										<td>{{avaliacao.ava_gorduracorporal}}</td>
+										<td>{{avaliacao.ava_pesogordo}}</td>
+										<td>{{avaliacao.ava_pesomagro}}</td>
+										<td>{{avaliacao.ava_pesomuscular}}</td>
+									</tr>
+									<tr class="linhaInicial" ng-if="arrayAvaliacoes.length == 0">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 1">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 2">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 3">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 4">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 5">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+
+								</table>
+			                </div>
+			                <br>
+			                <div class="col-md-10 col-sm-10"></div>
+			                <div class="btn-group col-sm-2 col-md-2" align="right">
+								<button type="button" class="btn btn-default" id="excluiAvaliacao" ng-click="excluiAvaliacao()">
+								<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</div>
+						</div>
+		            </div>    
+            </fieldset>
+		</div>
+
+		<div class="tab-content" ng-show="isAbaAtual('Plano')">
+			
+			<fieldset>
+				<legend>Plano</legend>
+
+				<div class="row">
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Plano de Pagamento:</div>
+					<div class="col-md-3 col-sm-3 col-xs-3">
+						<select class="form-control" ng-model="Aluno.plano" ng-click="testeplano()"
+						ng-options="plano.plan_cod as plano.plan_descricao for plano in arrPlanos">
+						</select>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Quantidade de Parcelas:</div>
+					<div class="col-md-2 col-sm-2 col-xs-3">
+						<input type="number" class="form-control" ng-model="Parcela.qtParcelas">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Data Início:</div>
+					<div class="col-md-3 col-sm-3 col-xs-4">
+						<input type="date" ng-model="Parcela.dtInicio" class="form-control"></input>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Dia Vencimento:</div>
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<input type="number" ng-model="Parcela.vencimento" class="form-control"></input>
+					</div>      
+				</div>
+
+				<div class="row">
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Valor Mensalidade:</div>
+					<div class="col-md-2 col-sm-2 col-xs-3">
+						<input type="number" class="form-control" ng-model="Parcela.valorMensal" placeholder="R$ 0,00" 
+						ng-blur="atualizaValor()">
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Valor Desconto:</div>
+					<div class="col-md-2 col-sm-2 col-xs-3">
+						<input type="number" class="form-control" ng-blur="atualizaValor()" 
+						ng-model="Parcela.valorDesconto" placeholder="R$ 0,00">
+					</div>
+				</div>
+				
+				<div class="row">	
+					<div class="col-md-3 col-sm-3 col-xs-3" align="right">Valor Total:</div>
+					<div class="col-md-2 col-sm-2 col-xs-3">
+						<input type="text" class="form-control" ng-model="Parcela.valorTotal" placeholder="R$ 0,00" disabled>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4" align="center">
+	                	<button class="btn btn-primary" ng-click="geraParcelas()">
+	                		Gerar Parcelas
+	                	</button>
+	                </div>
+				</div>
+				<hr>
+
+				<div class="tab-content">
+		            <div align="center">Parcelas Geradas</div>
+		            <div class="contentTabela contentTabelaPlanos">   
+		            	<table class="table table-bordered  tabelaPlanos">
+							<tr>
+								<th class="active">Valor</th>
+								<th class="active">Vencimento</th>
+							</tr>
+							<tr ng-repeat="parcela in arrayParcelas">
+								<td>{{parcela.valor | real}}</td>
+								<td>{{parcela.vencimento | date: 'dd/MM/yyyy'}}</td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length == 0">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 1">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 2">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+	                </div>
+			</fieldset>
+
+		</div>
+
+	</div>
+    <hr>
+
+        <div class="col-md-9 col-sm-9 col-xs-0"></div>
+        <div class="botoesPrincipais">
+        	<button type="button" class="btn btn-success" ng-click="salvaAluno()">Salvar</button>
+        	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+        </div>
+</div>

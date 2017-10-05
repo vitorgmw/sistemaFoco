@@ -1,0 +1,118 @@
+<div class="relatorioResultados" ng-controller="relatorioResultadosController">
+
+		<!-- Aba Filtros -->
+		<div class="tabs-container">
+			<div class="tab-content" ng-show="isAbaAtual('Filtros')">
+				<fieldset> 
+					<legend>Relatório de Resultados do Aluno</legend>   
+					<div class="buscaAluno">
+						<div class="col-md-2 col-sm-2 col-xs-2" align="right">Aluno:</div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<input class="form-control" type="text" ng-model="Aluno.id">
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-7">
+							<input class="form-control" type="text" ng-model="Aluno.nome">
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+							<span class="glyphicon glyphicon-search"></span>	
+						</div>
+					</div> 
+					<br><br>
+	            	<div class="row">
+	            		<div class="col-md-2 col-sm-2 col-xs-2" align="right">Data Inicial:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtInicial" class="form-control"></input>
+		                </div>
+		                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Data Final:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtFinal" class="form-control"></input>
+		                </div>
+	            	</div>
+        		</fieldset>
+    		</div>
+
+
+			<!-- Aba Relatorio -->
+			<div class="tab-content" ng-show="isAbaAtual('Relatorio')">
+				<fieldset>
+					<legend>Relatório de Resultados do Aluno</legend>
+		            <div class="contentTabela contentTabelaRelatorioResultados">   
+		            	<table class="table table-bordered">
+							<tr>
+								<th class="active">AV</th>
+								<th class="active">Peso</th>
+								<th class="active">Gordura Corporal</th>
+								<th class="active">Peso Gordo</th>
+								<th class="active">Peso Magro</th>
+								<th class="active">Peso Muscular</th>
+							</tr>
+							<tr ng-repeat="avaliacao in arrayAvaliacoes" 
+							ng-click="setLinhaTabelaSel(arrayAvaliacoes.indexOf(avaliacao))" 
+							ng-class="{'linhaTabelaSel' : isLinhaTabelaSel(arrayAvaliacoes.indexOf(avaliacao))}">
+								<td>{{avaliacao.ava_cod}}</td>
+								<td>{{avaliacao.ava_peso}}</td>
+								<td>{{avaliacao.ava_gorduracorporal}}</td>
+								<td>{{avaliacao.ava_pesogordo}}</td>
+								<td>{{avaliacao.ava_pesomagro}}</td>
+								<td>{{avaliacao.ava_pesomuscular}}</td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAvaliacoes.length == 0">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 1">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 2">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 3">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 4">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAvaliacoes.length <= 5">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+		            </div>
+				</div>
+			</fieldset>
+		</div>
+		<hr>
+		<div class="col-md-8 col-sm-8 col-xs-8"></div>
+	    <button class="btn btn-success" ng-Click="geraRelatorio()" ng-show="isAbaAtual('Filtros')">Gerar Relatório</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+	  
+</div>

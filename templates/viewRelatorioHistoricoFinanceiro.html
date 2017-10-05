@@ -1,0 +1,140 @@
+<div class="relatorioHistoricoFinanceiro" ng-controller="relatorioHistoricoFinanceiroController">
+
+		<!-- Aba Filtros -->
+		<div class="tabs-container">
+			<div class="tab-content" ng-show="isAbaAtual('Filtros')">
+				<fieldset> 
+					<legend>Relatório de Histórico Financeiro</legend>   
+					<div class="buscaAluno">
+						<div class="col-md-2 col-sm-2 col-xs-2" align="right">Aluno:</div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<input class="form-control" type="text" ng-model="Aluno.id">
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-7">
+							<input class="form-control" type="text" ng-model="Aluno.nome">
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+							<span class="glyphicon glyphicon-search"></span>	
+						</div>
+					</div> 
+					<br><br>
+	            	<div class="row">
+	            		<div class="col-md-2 col-sm-2 col-xs-2" align="right">Data Inicial:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtInicial" class="form-control"></input>
+		                </div>
+		                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Data Final:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtFinal" class="form-control"></input>
+		                </div>
+	            	</div>
+	            	<br>
+	            	<div class="row">
+	            		<div class="col-md-2 col-sm-2 col-xs-2" align="right">Status:</div>	            		
+	            		<div class="col-md-3 col-sm-3 col-xs-4">
+							<select class="form-control" ng-model="dpwStatus">
+								<option value="">-- Selecione ---</option>
+								<option value="A">A pagar</option>
+								<option value="P">Pagas</option>
+								<option value="Vencidas">Vencidas</option>
+								<option value="Todas">Todas</option>
+							</select>
+	                	</div>
+	            	</div>
+
+        		</fieldset>
+    		</div>
+
+
+			<!-- Aba Relatorio -->
+			<div class="tab-content" ng-show="isAbaAtual('Relatorio')">
+				<fieldset>
+					<legend>Relatório de Alunos</legend>   
+
+					<div class="contentTabela contentTabelaRelatorioHistoricoFinanceiro">   
+		            	<table class="table table-bordered  tabelaRelatorioHistoricoFinanceiro">
+							<tr>
+								<th class="active">Aluno</th>
+								<th class="active">Parcela</th>
+								<th class="active">Juros/Multa</th>
+								<th class="active">Desconto</th>
+								<th class="active">Valor Total</th>
+								<th class="active">Vencimento</th>
+								<th class="active">Data de Pagamento</th>			
+							</tr>
+							<tr ng-repeat="parcela in arrayParcelas">
+								<td>{{Aluno.nome}}</td>
+								<td>{{parcela.parc_cod}}</td>
+								<td>{{parcela.parc_valorjurosmulta | real}}</td>
+								<td>{{parcela.parc_valordesconto | real}}</td>
+								<td>{{parcela.parc_valorliquido | real}}</td>
+								<td>{{parcela.parc_vencimento | date: 'dd/MM/yyyy'}}</td>
+								<td>{{parcela.parc_pagamento | date: 'dd/MM/yyyy'}}</td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length == 0">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 1">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 2">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 3">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 4">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 5">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+	                </div>
+
+				</fieldset>
+			</div>
+		</div>
+		<hr>
+		<div class="col-md-8 col-sm-8 col-xs-8"></div>
+	    <button class="btn btn-success" ng-Click="geraRelatorio()" ng-show="isAbaAtual('Filtros')">Gerar Relatório</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+	  
+</div>

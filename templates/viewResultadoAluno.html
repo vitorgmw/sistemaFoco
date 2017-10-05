@@ -1,0 +1,352 @@
+<div class="viewResultadoAluno" ng-controller="resultadoController">
+
+	<div class="buscaAluno">
+		<div class="col-md-1">Aluno:</div>
+		<div class="col-md-2 col-sm-2"><input class="form-control" type="text" ng-model="Aluno.id"></div>
+		<div class="col-md-8"><input class="form-control" type="text" ng-model="Aluno.nome"></div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+			<span class="glyphicon glyphicon-search"></span>	
+		</div>
+	</div>
+
+	<br>
+	<ul class="abas">
+	  <li><a ng-click="setAbaAtual('Resultados')" ng-class="{'abaAtiva' : isAbaAtual('Resultados')}">Resultados</a></li>
+	  <li><a ng-click="setAbaAtual('Historico')" ng-class="{'abaAtiva' : isAbaAtual('Historico')}">Histórico Financeiro</a></li>
+	</ul>
+
+	<hr>
+
+		<div class="tabs-container">
+			<div class="tab-content" ng-show="isAbaAtual('Resultados')">
+				
+				<ul class="abas">
+				  <li><a ng-click="setAbaAtualAvaliacao('PrimeiraAvaliacao')" ng-class="{'abaAtiva' : isAbaAtualAvaliacao('PrimeiraAvaliacao')}">
+				  Primeira Avaliação</a></li>
+				  <li><a ng-click="setAbaAtualAvaliacao('UltimaAvaliacao')" ng-class="{'abaAtiva' : isAbaAtualAvaliacao('UltimaAvaliacao')}">
+				  Ultima Avaliação</a></li>
+				</ul>
+
+				<div class="tabs-container">
+					<div class="tab-content" ng-show="isAbaAtualAvaliacao('PrimeiraAvaliacao')">				
+		        		<fieldset>      	
+							<div class="row">
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Diâmetro Joelho(M):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_diametrojoelho" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso(kg):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				               		<input class="form-control" type="text"  ng-model="avaAluno.ava_peso" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Altura(M):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				               		<input class="form-control" type="text"  ng-model="avaAluno.ava_altura" placeholder="0,00" disabled>
+				                </div>
+				            </div>
+				           	
+							<div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Diâmetro Punho(M):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text"  ng-model="avaAluno.ava_diametropunho" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Braço Contraido(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ava_bracocontraido" type="text" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Braço Relaxado(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ava_bracorelaxado" type="text" placeholder="0,00" disabled>
+				                </div>
+				            </div>
+
+				            <div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Antebraço(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_antebraco" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Ombro(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ava_ombro" type="text" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Coxa(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ava_coxa" type="text" placeholder="0,00" disabled> 
+				                </div>
+				            </div>
+
+				            <div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Tórax(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_torax" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Cintura(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ava_cintura" placeholder="0,00" type="text" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Panturrilha(cm):</div>
+				                <div class="col-md-2 col-sm-2 col-xs-3">
+				                	<input class="form-control" ng-model="avaAluno.ava_panturrilha" type="text" placeholder="0,00" disabled>
+				                </div>
+				            </div>
+
+				            <div class="row"> 
+  	
+				           	</div>
+				            <hr>
+				            <div class="row">
+				            	<div class="col-md-2 col-sm-2 col-xs-2 " align="right">Gordura Corporal:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-2">
+				                	<input class="form-control" ng-model="avaAluno.ava_gorduracorporal" placeholder="0,00" type="text" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Gordo:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-2">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_pesogordo" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Magro:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-2">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_pesomagro" placeholder="0,00" disabled>
+				                </div>
+				            </div>
+				            <div class="row">
+				                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Ósseo:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-2">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_pesoosseo" placeholder="0,00" disabled>
+				                </div>
+				                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Muscular:</div>
+				                <div class="col-md-2 col-sm-2 col-xs-2">
+				                	<input class="form-control" type="text" ng-model="avaAluno.ava_pesomuscular" placeholder="0,00" disabled>
+				                </div>
+				    			<div class="col-md-2 col-sm-2 col-xs-2" align="right">Data:</div>
+								<div class="col-md-2 col-sm-2 col-xs-2">
+									<input type="text" ng-model="avaAluno.ava_data" class="form-control" disabled></input>
+								</div>  
+				            </div>
+		                
+		        		</fieldset>
+		        	</div>	
+        		</div>
+
+        		<div class="tab-content" ng-show="isAbaAtualAvaliacao('UltimaAvaliacao')">
+	        		<fieldset>      	 	
+						<div class="row">
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Diâmetro Joelho(M):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_diametrojoelho" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Peso(kg):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			               		<input class="form-control" type="text"  ng-model="ultimaAvaAluno.ava_peso" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Altura(M):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			               		<input class="form-control" type="text"  ng-model="ultimaAvaAluno.ava_altura" placeholder="0,00" disabled>
+			                </div>
+			            </div>
+			           	
+						<div class="row">
+			            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Diâmetro Punho(M):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" type="text"  ng-model="ultimaAvaAluno.ava_diametropunho" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Braço Contraido(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_bracocontraido" type="text" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Braço Relaxado(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_bracorelaxado" type="text" placeholder="0,00" disabled>
+			                </div>
+			            </div>
+
+			            <div class="row">
+			            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Antebraço(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_antebraco" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Ombro(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_ombro" type="text" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Coxa(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_coxa" type="text" placeholder="0,00" disabled> 
+			                </div>
+			            </div>
+
+			            <div class="row">
+			            	<div class="col-md-2 col-sm-2 col-xs-3" align="right">Tórax(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_torax" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Cintura(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_cintura" placeholder="0,00" type="text" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-3" align="right">Panturrilha(cm):</div>
+			                <div class="col-md-2 col-sm-2 col-xs-3">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_panturrilha" type="text" placeholder="0,00" disabled>
+			                </div>
+			            </div>
+
+			            <div class="row"> 
+	
+			           	</div>
+			            <hr>
+			            <div class="row">
+			            	<div class="col-md-2 col-sm-2 col-xs-2 " align="right">Gordura Corporal:</div>
+			                <div class="col-md-2 col-sm-2 col-xs-2">
+			                	<input class="form-control" ng-model="ultimaAvaAluno.ava_gorduracorporal" placeholder="0,00" type="text" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Gordo:</div>
+			                <div class="col-md-2 col-sm-2 col-xs-2">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_pesogordo" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Magro:</div>
+			                <div class="col-md-2 col-sm-2 col-xs-2">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_pesomagro" placeholder="0,00" disabled>
+			                </div>
+			            </div>
+			            <div class="row">
+			                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Ósseo:</div>
+			                <div class="col-md-2 col-sm-2 col-xs-2">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_pesoosseo" placeholder="0,00" disabled>
+			                </div>
+			                <div class="col-md-2 col-sm-2 col-xs-2" align="right">Peso Muscular:</div>
+			                <div class="col-md-2 col-sm-2 col-xs-2">
+			                	<input class="form-control" type="text" ng-model="ultimaAvaAluno.ava_pesomuscular" placeholder="0,00" disabled>
+			                </div>
+			    			<div class="col-md-2 col-sm-2 col-xs-2" align="right">Data:</div>
+							<div class="col-md-2 col-sm-2 col-xs-2">
+								<input type="text" ng-model="ultimaAvaAluno.ava_data" class="form-control" disabled></input>
+							</div>  
+			            </div>
+		                
+		        	</fieldset>
+        		</div>
+			</div>
+
+			<!-- Aba historico financeiro -->
+			<div class="tab-content" ng-show="isAbaAtual('Historico')">
+				<fieldset>
+					
+					<div class="row">
+						<div class="col-md-1 col-sm-1 col-xs-1" align="right">Status:</div>
+		                	
+	                	<div class="col-md-2 col-sm-2 col-xs-2" >
+			                <input type="radio" ng-model="Status" value="P">Pagas
+		                </div>
+
+		                <div class="col-md-2 col-sm-2 col-xs-2">
+		                	<input type="radio" ng-model="Status" value="A">A Pagar
+		                </div>
+
+		                <div class="col-md-2 col-sm-2 col-xs-2" >
+			                <input type="radio" ng-model="Status" value="V">Vencidas
+		                </div>
+
+		                <div class="col-md-2 col-sm-2 col-xs-2">
+			                <input type="radio" ng-model="Status">Todas
+		                </div>
+
+	                </div>
+
+					<div class="contentTabela contentTabelaParcelas">   
+		            	<table class="table table-bordered  tabelaParcelas">
+							<tr>
+								<th class="active">Status</th>
+								<th class="active">Parcela</th>
+								<th class="active">Data Lançamento</th>
+								<th class="active">Data Vencimento</th>
+								<th class="active">Valor</th>
+								<th class="active">Juros/Multa</th>
+								<th class="active">Desconto</th>
+								<th class="active">Total</th>
+							</tr>
+							<tr ng-repeat="parcela in arrayParcelas | filter: Status" ng-click="setLinhaTabelaSel(parcela.parc_cod)" ng-class="{'linhaTabelaSel' : isLinhaTabelaSel(parcela.parc_cod)}">
+								<td>{{parcela.parc_status}}</td>
+								<td>{{parcela.parc_cod}}</td>
+								<td>{{parcela.parc_emissao | date: 'dd/MM/yyyy'}}</td>
+								<td>{{parcela.parc_vencimento | date: 'dd/MM/yyyy'}}</td>
+								<td>{{parcela.parc_valorbruto | real}}</td>
+								<td>{{parcela.parc_valorjurosmulta | real}}</td>
+								<td>{{parcela.parc_valordesconto | real}}</td>
+								<td>{{parcela.parc_valorliquido | real}}</td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length == 0">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 1">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 2">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 3">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 4">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayParcelas.length <= 5">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+	                </div>
+				</fieldset>
+			</div>
+
+		</div>
+
+		<hr>
+
+		<div class="col-md-9 col-sm-9 col-xs-0"></div>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+	  
+	</div>
+
+
+</div>

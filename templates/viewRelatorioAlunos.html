@@ -1,0 +1,89 @@
+<div class="relatorioAlunos" ng-controller="relatorioAlunosController">
+
+		<!-- Aba Filtros -->
+		<div class="tabs-container">
+			<div class="tab-content" ng-show="isAbaAtual('Filtros')">
+				<fieldset> 
+					<legend>Relatório de Alunos</legend>    	
+					<div class="row">
+						<div class="col-md-4 col-sm-4 col-xs-4 " align="right">Status:</div>
+		                <div class="col-md-5 col-sm-7 col-xs-4">
+		                	Ativo <input ng-model="status" id="StatusAtivo" value="true" type="radio">
+		                	Inativo <input ng-model="status" id="StatusInativo" value="false" type="radio">
+		                	Todos <input ng-model="status" id="StatusTodos" value="todos" type="radio">
+		                </div> 
+					</div>
+					<br>
+	            	<div class="row">
+	            		<div class="col-md-4 col-sm-4 col-xs-4" align="right">Data de Cadastro entre:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtInicial" class="form-control"></input>
+		                </div>
+		                <div class="col-md-1 col-sm-1 col-xs-1" align="center"> e </div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtFinal" class="form-control"></input>
+		                </div>
+	            	</div>
+        		</fieldset>
+    		</div>
+
+
+			<!-- Aba Relatorio -->
+			<div class="tab-content" ng-show="isAbaAtual('Relatorio')">
+				<fieldset>
+					<legend>Relatório de Alunos</legend>   
+
+					<div class="contentTabela contentTabelaRelatorioAlunos">   
+		            	<table class="table table-bordered  tabelaRelatorioAlunos">
+							<tr>
+								<th class="active">Aluno</th>
+								<th class="active">Data de Cadastro</th>
+								<th class="active">Status</th>
+							</tr>
+							<tr ng-repeat="aluno in arrayAlunos" ng-class="{'linhaTabelaSel' : aluno.alu_ativo == 'Inativo'}">
+								<td>{{aluno.alu_nome}}</td>
+								<td>{{aluno.alu_dtcadastro | date: 'dd/MM/yyyy'}}</td>
+								<td>{{aluno.alu_ativo}}</td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAlunos.length == 0">
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAlunos.length <= 1">
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAlunos.length <= 2">
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAlunos.length <= 3">
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAlunos.length <= 4">
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="linhaInicial" ng-if="arrayAlunos.length <= 5">
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+	                </div>
+
+				</fieldset>
+			</div>
+		</div>
+		<hr>
+		<div class="col-md-8 col-sm-8 col-xs-8"></div>
+	    <button class="btn btn-success" ng-Click="geraRelatorio()" ng-show="isAbaAtual('Filtros')">Gerar Relatório</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+	  
+</div>

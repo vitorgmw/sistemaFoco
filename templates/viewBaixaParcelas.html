@@ -1,0 +1,100 @@
+<div class="viewBaixaParcelas" ng-controller="baixaController">
+	 
+	 <div class="buscaAluno">
+		<div class="col-md-1 col-sm-2 col-xs-2">Aluno:</div>
+		<div class="col-md-2 col-sm-2 col-xs-2"><input class="form-control" type="text" ng-model="Aluno.id"></div>
+		<div class="col-md-8 col-sm-7 col-xs-7"><input class="form-control" type="text" ng-model="Aluno.nome"></div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+			<span class="glyphicon glyphicon-search"></span>	
+		</div>
+	</div>
+	<br><br>
+
+	<fieldset>
+		<legend>Baixa de Parcelas</legend>
+
+		<div class="contentTabela contentTabelaParcelas">   
+			<table class="table table-bordered tabelaParcelas">
+				<tr>
+					<th class="active">Parcela</th>
+					<th class="active">Data Lançamento</th>
+					<th class="active">Data Vencimento</th>
+					<th class="active">Valor</th>
+				</tr>
+				<tr ng-repeat="parcela in arrayParcelas" ng-click="setLinhaTabelaSel(arrayParcelas.indexOf(parcela))" 
+				ng-class="{'linhaTabelaSel' : isLinhaTabelaSel(arrayParcelas.indexOf(parcela))}">
+					<td>{{parcela.parc_cod}}</td>
+					<td>{{parcela.parc_emissao | date: 'dd/MM/yyyy'}}</td>
+					<td>{{parcela.parc_vencimento | date: 'dd/MM/yyyy'}}</td>
+					<td>{{parcela.parc_valorbruto | real}}</td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length == 0">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 1">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 2">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 3">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 4">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr class="linhaInicial" ng-if="arrayParcelas.length <= 5">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-3 col-sm-3 col-xs-3" align="right">Valor Bruto:</div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                	<input class="form-control" type="text" ng-model="Parcela.vBruto" disabled>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3" align="right">Desconto:</div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                	<input class="form-control" ng-model="Parcela.vDesconto" type="number" ng-blur="calculaValor()">
+                </div>
+        </div>
+        <br>
+        <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3" align="right">Juros/Multa:</div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                	<input class="form-control" ng-model="Parcela.vJurosMulta" type="number" ng-blur="calculaValor()">
+                </div>
+              	<div class="col-md-3 col-sm-3 col-xs-3 " align="right">Valor Liquido:</div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                	<input class="form-control" ng-model="Parcela.vLiquido" type="text" disabled>
+                </div>                
+		</div>
+	</fieldset>
+	<hr>
+
+	<div class="col-md-9 col-sm-9 col-xs-0"></div>
+    <div class="botoesPrincipais">
+    	<button type="button" class="btn btn-success" ng-click="baixarParcela()">Baixar</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+    </div>
+</div>

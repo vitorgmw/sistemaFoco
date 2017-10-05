@@ -1,0 +1,50 @@
+<div class="relatorioStatus" ng-controller="relatorioStatusController">
+
+		<!-- Aba Filtros -->
+		<div class="tabs-container">
+			<div class="tab-content" ng-show="isAbaAtual('Filtros')">
+				<fieldset> 
+					<legend>Relatório de Status Financeiro</legend>
+					<div class="buscaAluno">
+						<div class="col-md-2 col-sm-2 col-xs-2" align="right">Aluno:</div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<input class="form-control" type="text" ng-model="Aluno.id">
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-7">
+							<input class="form-control" type="text" ng-model="Aluno.nome">
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<button type="button" class="btn btn-default" aria-label="Left Align" ng-click="buscaAluno()">
+							<span class="glyphicon glyphicon-search"></span>	
+						</div>
+					</div> 
+					<br><br>   	
+	            	<div class="row">
+	            		<div class="col-md-2 col-sm-2 col-xs-3" align="right">Data Inicial:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtInicial" class="form-control"></input>
+		                </div>
+		                <div class="col-md-2 col-sm-2 col-xs-3" align="center">Data Final:</div>
+		                <div class="col-md-3 col-sm-3 col-xs-4">
+		                	<input type="date" ng-model="dtFinal" class="form-control"></input>
+		                </div>
+	            	</div>
+        		</fieldset>
+    		</div>
+
+
+			<!-- Aba Relatorio -->
+			<div class="tab-content" ng-show="isAbaAtual('Relatorio')">
+				<fieldset>
+					<legend>Relatório de Alunos</legend>  
+					Aluno : <div ng-bind="Aluno.nome"></div>
+					<center><div id="graficoStatus"></div></center>
+				</fieldset>
+			</div>
+		</div>
+		<hr>
+		<div class="col-md-8 col-sm-8 col-xs-8"></div>
+	    <button class="btn btn-success" ng-Click="geraRelatorio()" ng-show="isAbaAtual('Filtros')">Gerar Relatório</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+	  
+</div>

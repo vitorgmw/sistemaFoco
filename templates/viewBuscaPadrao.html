@@ -1,0 +1,72 @@
+<div class="viewBuscaPadrao " ng-controller="buscaController">
+	<div class="filtroAlunos">
+    	<div class="col-md-1 col-sm-1 col-xs-1" align="right">Filtro:</div>
+        <div class="col-md-11 col-sm-11 col-xs-11"><input class="form-control" type="text" 
+        ng-model="filtroAlunos" required></div>
+    </div>
+    <br>
+    <br>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <fieldset>
+        	<legend>Busca de Alunos</legend>
+		    <div class="contentTabela contentTabelaBusca">   
+		    	<table class="table table-bordered ">
+					<tr>
+						<th ng-click="ordenacao(0)" class="active">Matrícula</th>
+						<th ng-click="ordenacao(1)" class="active">Nome</th>
+						<th ng-click="ordenacao(2)" class="active">Status</th>
+					</tr>
+					<tr ng-repeat="aluno in arrayAlunos | filter: filtroAlunos" 
+					ng-click="setAlunoSel(aluno)"
+					ng-class="{'linhaTabelaSel' : isLinhaTabelaSel(aluno.id)}">
+						<td>{{aluno.id}}</td>
+						<td>{{aluno.nome}}</td>
+						<td>{{aluno.status}}</td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length == 0">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length <= 1">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length <= 2">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length <= 3">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length <= 4">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length <= 5">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayAlunos.length <= 6">
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+		    </div>
+		</fieldset>
+		<hr>
+	</div>
+
+		<div class="col-md-9 col-sm-6 col-xs-10"></div>
+		<div class="botoesPrincipais">
+			<button type="button" class="btn btn-primary" ng-click="selecionaAluno()">Selecionar</button>
+			<button type="button" class="btn btn-default" ng-click="cancela()">Cancelar</button>
+		</div>
+</div>

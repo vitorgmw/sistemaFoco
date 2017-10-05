@@ -1,0 +1,373 @@
+*{
+	font-family: 'Abel', sans-serif;
+}
+
+body,html{
+	background:none;
+	margin: 0;
+    padding:0;
+    height: 100%;
+}
+
+.btnMenus {
+	display: none;
+}
+
+input, select{
+	color: black;
+	font-family: Arial;
+}
+
+.glyphicon-search{
+	color: blue;
+}
+
+.glyphicon-plus{
+	color: green;
+}
+
+.glyphicon-pencil{
+	color: yellow;
+}
+
+.glyphicon-trash{
+	color: red;
+}
+
+
+table{
+	color: black;
+	font-family: Arial;
+	text-align: center;
+}
+
+.administrador {
+	background-image: url(../img/background.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+a{ 
+ text-decoration:none; 
+ color: #fff;
+} 
+
+.titulo {
+	font-family: 'Orbitron', sans-serif;
+	margin-left: 45%;
+	color: #fff;
+	font-size: 34px;
+	display: inline;
+}
+
+.titulo span {
+	color: red;
+	font-family: 'Orbitron', sans-serif;
+}
+
+#PesquisaMenus{
+	float: right;
+	float: top;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+.header {
+	background-color: #141422;
+	border: 1px solid #141422;	
+	align: center;
+	width: 100%;
+}
+
+
+.menus{
+	width: 180px;
+	height: 100%;
+	display:inline;
+	background-color: #141422;
+	float: left;
+	color: #fff;
+	font-size: 20px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+
+.menus li{
+	margin-bottom: 80px;
+	margin-left: 10px;
+}
+
+.telacadastro, .telaresultado, .telafinanceiro, .telarelatorios{
+	border-bottom: 2px solid black;
+}
+
+legend {
+	color: #6a6d72;
+}
+
+.buscaAluno {
+	display: inline;
+}
+
+/*menus*/
+.menuscadastros, .menusfinanceiro, .menusrelatorios{
+	padding-top: 50px;
+	background-color: #141422;
+	color: #fff;
+	display: flex;
+	box-sizing: none !important;
+	border-radius: 2px;
+	border-top: 1px solid #fff; 
+	border-left: 1px solid #fff; 
+	height: 100%;
+}
+
+.menuscadastros li {
+	margin-left: 25px;
+	margin-right: 25px;
+	box-sizing: none !important;
+	font-size: 20px;
+}
+
+.menusrelatorios li {
+	margin-left: 25px;
+	margin-right: 25px;
+	box-sizing: none !important;
+	font-size: 20px;
+}
+
+.menusfinanceiro li {
+	margin-left: 25px;
+	margin-right: 25px;
+	box-sizing: none !important;
+	font-size: 20px;
+}
+
+.abas li{
+	margin-left: 15px;
+	padding-left: 7px;
+	border-left: 2px solid #fff;
+	display: inline; 
+}
+
+.abaAtiva {
+	background: #fff;
+	color: black;
+	padding: 4px;
+	margin: 5px;
+	font-size: 25px;
+}
+
+.linhaInicial{
+	height: 40px;
+}
+
+.linhaTabelaSel {
+	color: red;
+}
+
+/*Tela Cadastro de Alunos*/
+.viewAluno {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+.viewAluno input {
+	margin-bottom: 10px;
+}
+
+.botoesCadAluno button{
+	margin-right: 10px;
+}
+
+.alunoDados td {
+	padding: 10px;
+}
+
+.tabelaContatos {
+	margin-bottom: 0px; 
+}
+
+.contentTabelaContatos, .contentTabelaPlanos { 
+	overflow:auto;
+	max-height: 175px;
+	min-height: 175px;
+}
+
+.contentTabelaParcelas, .contentTabelaAvaliacoes, .contentTabelaBusca, .contentTabelaRelatorioAlunos, .contentTabelaRelatorioHistoricoFinanceiro, .contentTabelaRelatorioResultados { 
+	overflow:auto;
+	max-height: 300px;
+	min-height: 300px;
+}
+
+tr { 
+	height: 40px;
+}
+
+	
+.contentTabela td {
+	background-color: #fff;
+}
+
+
+/*Tela Resultados Aluno*/
+
+.viewResultadoAluno {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+.viewResultadoAluno input {
+	margin-bottom: 10px;
+}
+
+
+
+/*viewBuscaPadrao*/
+
+.viewBuscaPadrao {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+
+/*viewCadastroPlano*/
+
+.viewCadastroPlano {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+/*Baixa de Parcelas*/
+
+.viewBaixaParcelas  {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;	
+}
+
+/*viewMovimentoFinanceiro*/
+
+.viewMovimentoFinanceiro {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+/*Tela Relatorio de Alunos*/
+.relatorioAlunos {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+/*Tela Relatorio de Historico Financeiro*/
+.relatorioHistoricoFinanceiro {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+/*Tela Relatorio de Status Financeiro*/
+.relatorioStatus {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+
+/*Tela Relatorio de Status Financeiro*/
+.relatorioResultados {
+	background-color: #111111;
+	font-size: 19px;
+	padding: 10px;
+	align-self: center;
+	color: #fff;
+	margin-top: 1%;
+	margin-right: 10%;
+	margin-left: 20%;
+}
+
+
+@media (max-width: 790px) {
+
+.menus{
+	display: none;
+}
+
+.btnMenus {
+	float: top;
+	float: left;
+	margin-top: 2px;
+	display: inline;
+	background-color: transparent;
+	border: none;
+	color: #fff;
+}
+
+#PesquisaMenus {
+	display: none;
+}
+
+/*viewAlunos*/
+
+.viewAluno {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+
+}

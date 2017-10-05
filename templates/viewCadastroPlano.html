@@ -1,0 +1,112 @@
+<div class="viewCadastroPlano" ng-controller="planoController">
+	<br>
+	<fieldset>
+		<legend>Cadastro de Planos</legend>
+
+		<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-2" align="right">Descrição:</div>
+			<div class="col-md-9 col-sm-9 col-xs-9">
+				<input type="text" class="form-control" ng-model="Plano.descricao">				
+			</div>
+		</div>
+		<br>
+			
+		<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-3" align="right">Quantidade Dias:</div>
+			<div class="col-md-2 col-sm-2 col-xs-3">
+				<input type="number" class="form-control" ng-model="Plano.qtDias" id="qtDias">
+			</div>
+			<div class="col-md-2 col-sm-2 col-xs-3" align="right">Quantidade Parcelas:</div>
+			<div class="col-md-2 col-sm-2 col-xs-3">
+				<input type="number" class="form-control" ng-model="Plano.qtParcelas" id="qtParcelas">
+			</div>
+			<div class="col-md-2 col-sm-2 col-xs-3" align="right">Dia Vencimento:</div>
+			<div class="col-md-2 col-sm-2 col-xs-3">
+				<input type="number" ng-model="Plano.vencimento" class="form-control"></input>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-3" align="right">Valor Total:</div>
+			<div class="col-md-2 col-sm-2 col-xs-3">
+				<input type="number" class="form-control" ng-model="Plano.valorTotal" ng-blur="calculaValorParcela()">
+			</div>
+
+			<div class="col-md-2 col-sm-2 col-xs-3" align="right">Valor Parcelas:</div>
+			<div class="col-md-2 col-sm-2 col-xs-3">
+				<input type="number" class="form-control" ng-model="Plano.valorParcela" placeholder="R$ 0,00" disabled>
+			</div>
+
+			<div class="col-md-1 col-sm-1 col-xs-2" align="right">Status:</div>
+			<div class="col-md-3 col-sm-3 col-xs-4">
+            	Ativo <input ng-model="Plano.status" id="StatusAtivo" value="true" type="radio">
+            	Inativo <input ng-model="Plano.status" id="StatusInativo" value="false" type="radio">
+            </div> 
+
+		</div>
+		
+		<hr>
+
+		<div class="tab-content">
+	        <div align="center">Planos Cadastrados</div>
+	        <div class="contentTabela contentTabelaPlanos">   
+	        	<table class="table table-bordered  tabelaPlanos">
+					<tr>
+						<th class="active">Descrição</th>
+						<th class="active">Dias</th>
+						<th class="active">Parcelas</th>
+						<th class="active">Valor Total</th>
+						<th class="active">Valor Parcela</th>
+						<th class="active">Status</th>
+					</tr>
+					<tr ng-repeat="plano in arrayPlanos" ng-click="setLinhaTabelaSel(arrayPlanos.indexOf(plano))" 
+					ng-class="{'linhaTabelaSel' : isLinhaTabelaSel(arrayPlanos.indexOf(plano))}">
+						<td>{{plano.descricao}}</td>
+						<td>{{plano.qtDias}}</td>
+						<td>{{plano.qtParcelas}}</td>
+						<td>{{plano.valorTotal | real}}</td>
+						<td>{{plano.valorParcela | real}}</td>
+						<td>{{plano.status}}</td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayPlanos.length == 0">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayPlanos.length <= 1">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="linhaInicial" ng-if="arrayPlanos.length <= 2">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+	        </div>
+
+	        <div class="col-md-10 col-sm-10 col-xs-0"></div>
+            <div class="btn-group" align="right">
+				<button type="button" class="btn btn-default" id="editaPlano" ng-click="editaPlano()">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+	</fieldset>
+	<hr>
+	<div class="col-md-9 col-sm-9 col-xs-0"></div>
+    <div class="botoesPrincipais">
+    	<button type="submit" class="btn btn-success" ng-click="salvar()">Salvar</button>
+    	<button  type="button" class="btn btn-default" ng-Click="limpaTela()">Limpar Tela</button>
+    </div>
+</div>
+
